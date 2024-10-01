@@ -35,8 +35,8 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
 	}
 
 	public _00_InicioAplicacion() {
+		
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 18));
-
 		getContentPane().setBackground(new Color(173, 216, 230));
 		getContentPane().setLayout(null);
 		setResizable(false);
