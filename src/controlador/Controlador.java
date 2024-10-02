@@ -26,5 +26,11 @@ public class Controlador {
 		((JFrame) misVistas[desde]).setVisible(false);
 		((JFrame) misVistas[hasta]).setVisible(true);
 	}
+
+	public void serializarObjeto(String contenido) {
+		
+		miModelo.serializarArchivo(contenido);
+		
+	}
 	
 }
