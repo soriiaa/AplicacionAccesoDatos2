@@ -1,5 +1,8 @@
 package vista;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JFrame;
 
 import controlador.Controlador;
@@ -20,12 +23,15 @@ public class _02_DeserializarArchivos extends JFrame implements Vista {
 
 	public _02_DeserializarArchivos() {
 
-		getContentPane().setLayout(null);
 		setResizable(false);
 		setSize(900, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(false);
 		setLocationRelativeTo(null);
+		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 18));
+		getContentPane().setBackground(new Color(173, 216, 230));
+		getContentPane().setLayout(null);
+		
+		
 
 	}
 
