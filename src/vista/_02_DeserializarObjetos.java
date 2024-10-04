@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador;
@@ -77,10 +78,16 @@ public class _02_DeserializarObjetos extends JFrame implements Vista {
 		lblContenidoArchivo.setBounds(214, 362, 410, 30);
 		getContentPane().add(lblContenidoArchivo);
 
-		model = new DefaultTableModel();
+		model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 		model.addColumn("Nombre Archivos");
 		tableArchivos = new JTable(model);
 		tableArchivos.setBounds(214, 125, 458, 193);
+		tableArchivos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getContentPane().add(tableArchivos);
 
 		addWindowListener(new WindowAdapter() {
@@ -91,7 +98,7 @@ public class _02_DeserializarObjetos extends JFrame implements Vista {
 
 				if (archivos != null) {
 					for (File archivo : archivos) {
-						//model.addRow(archivo);
+						model.addRow(new Object[]{archivo.getName()});
 					}
 				}
 
