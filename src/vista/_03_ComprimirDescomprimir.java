@@ -44,35 +44,35 @@ public class _03_ComprimirDescomprimir extends JFrame implements Vista {
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 18));
 		getContentPane().setBackground(new Color(173, 216, 230));
 		getContentPane().setLayout(null);
-		
+
 		lblTitulo = new JLabel("Comprimir y Descomprimir Archivos");
-		lblTitulo.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 30));
 		lblTitulo.setBounds(148, 51, 591, 63);
+		lblTitulo.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 30));
 		getContentPane().add(lblTitulo);
-		
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(230, 159, 428, 257);
 		getContentPane().add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
+
 		btnDescomprimir = new JButton("Descomprimir");
-		btnDescomprimir.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
 		btnDescomprimir.setBounds(537, 427, 121, 23);
+		btnDescomprimir.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
 		getContentPane().add(btnDescomprimir);
 		btnDescomprimir.setBorder(null);
 		btnDescomprimir.setBackground(Color.white);
-		
+
 		btnComprimir = new JButton("Comprimir\r\n");
+		btnComprimir.setBounds(406, 427, 121, 23);
 		btnComprimir.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
 		btnComprimir.setBorder(null);
 		btnComprimir.setBackground(Color.WHITE);
-		btnComprimir.setBounds(406, 427, 121, 23);
 		getContentPane().add(btnComprimir);
-		
+
 		lblVolver = new JLabel("");
-		lblVolver.setBounds(836, 35, 42, 35);
+		lblVolver.setBounds(817, 36, 61, 44);
 		getContentPane().add(lblVolver);
 		lblVolver.setIcon(new ImageIcon(".\\img\\flechaAtras.png"));
 		lblVolver.addMouseListener(new MouseAdapter() {
@@ -86,13 +86,7 @@ public class _03_ComprimirDescomprimir extends JFrame implements Vista {
 				lblVolver.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
 		});
-		lblVolver.setBounds(817, 11, 61, 44);
 		getContentPane().add(lblVolver);
-		
-		lblVolver = new JLabel("");
-		lblVolver.setBounds(830, 51, 48, 37);
-		getContentPane().add(lblVolver);
-		
 
 	}
 
