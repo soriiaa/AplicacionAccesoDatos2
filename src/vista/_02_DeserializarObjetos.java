@@ -6,15 +6,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.List;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextPane;
+import javax.swing.table.DefaultTableModel;
 
-import archivos.Objetos;
 import controlador.Controlador;
 import modelo.Modelo;
 
@@ -23,9 +23,11 @@ public class _02_DeserializarObjetos extends JFrame implements Vista {
 	private Controlador miControlador;
 	private Modelo miModelo;
 	private JLabel lblVolver;
-	private JTextPane txtObjetos;
 	private JLabel lblTitulo;
-	private JScrollPane scrollPane;
+	private JTable tableArchivos;
+	private JLabel lblContenidoArchivo;
+	private JTextPane txtContenidoDeserializado;
+	private DefaultTableModel model;
 
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
@@ -39,17 +41,10 @@ public class _02_DeserializarObjetos extends JFrame implements Vista {
 
 		getContentPane().setLayout(null);
 
-		lblTitulo = new JLabel("DeserializarObjetos");
+		lblTitulo = new JLabel("Deserializar Archivos");
 		lblTitulo.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 30));
-		lblTitulo.setBounds(270, 34, 346, 52);
+		lblTitulo.setBounds(260, 34, 365, 52);
 		getContentPane().add(lblTitulo);
-
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(214, 129, 458, 337);
-		getContentPane().add(scrollPane);
-
-		txtObjetos = new JTextPane();
-		scrollPane.setViewportView(txtObjetos);
 		setResizable(false);
 		setSize(900, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,23 +66,37 @@ public class _02_DeserializarObjetos extends JFrame implements Vista {
 		});
 		lblVolver.setBounds(817, 11, 61, 44);
 		getContentPane().add(lblVolver);
-		
+
+		txtContenidoDeserializado = new JTextPane();
+		txtContenidoDeserializado.setEditable(false);
+		txtContenidoDeserializado.setBounds(214, 402, 458, 71);
+		getContentPane().add(txtContenidoDeserializado);
+
+		lblContenidoArchivo = new JLabel("Contenido del Archivo deserializado:");
+		lblContenidoArchivo.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 20));
+		lblContenidoArchivo.setBounds(214, 362, 410, 30);
+		getContentPane().add(lblContenidoArchivo);
+
+		model = new DefaultTableModel();
+		model.addColumn("Nombre Archivos");
+		tableArchivos = new JTable(model);
+		tableArchivos.setBounds(214, 125, 458, 193);
+		getContentPane().add(tableArchivos);
+
 		addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            	
-                List<Objetos> objetos = miControlador.deserializarObjeto();
-                StringBuilder texto = new StringBuilder();
-                
-                for (Objetos objeto : objetos) {
-                	texto.append(objeto.toString());
-                	texto.append("\n");
-                }
-                
-                txtObjetos.setText(texto.toString());
-                
-            }
-        });
+			@Override
+			public void windowOpened(WindowEvent e) {
+
+				File[] archivos = miControlador.cogerArchivos();
+
+				if (archivos != null) {
+					for (File archivo : archivos) {
+						//model.addRow(archivo);
+					}
+				}
+
+			}
+		});
 
 	}
 }

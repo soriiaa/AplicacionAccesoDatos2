@@ -50,6 +50,17 @@ public class Controlador {
 		}
 		return -1;
 	}
+	
+	public File[] cogerArchivos() {
+
+		File carpeta = new File(".\\archivos");
+
+		if (carpeta.isDirectory()) {
+			File[] listaArchivos = carpeta.listFiles();
+			return listaArchivos;
+		}
+		return null;
+	}
 
 	public int crearArchivo() {
 
