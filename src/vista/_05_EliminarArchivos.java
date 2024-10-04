@@ -25,6 +25,7 @@ public class _05_EliminarArchivos extends JFrame implements Vista {
 	private JScrollPane scrollPane;
 	private JButton btnEliminar;
 	private JLabel lblVolver;
+	private JLabel lblTitulo;
 
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
@@ -44,7 +45,7 @@ public class _05_EliminarArchivos extends JFrame implements Vista {
 		getContentPane().setBackground(new Color(173, 216, 230));
 		getContentPane().setLayout(null);
 
-		JLabel lblTitulo = new JLabel("Eliminar Archivos");
+		lblTitulo = new JLabel("Eliminar Archivos");
 		lblTitulo.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 30));
 		lblTitulo.setBounds(294, 35, 300, 61);
 		getContentPane().add(lblTitulo);
