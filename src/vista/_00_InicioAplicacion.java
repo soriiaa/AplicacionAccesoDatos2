@@ -19,9 +19,7 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
 	private Modelo miModelo;
 	private JButton btnAgregarObjeto;
 	private JButton btnDeserializarArchivos;
-	private JButton btnCompresionYDescompresion;
 	private JButton btnVisualizarArchivos;
-	private JButton btnEliminarArchivos;
 	private JLabel lblTitulo;
 
 	@Override
@@ -64,7 +62,7 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
 			}
 		});
 		btnAgregarObjeto.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
-		btnAgregarObjeto.setBounds(125, 228, 228, 51);
+		btnAgregarObjeto.setBounds(38, 228, 228, 51);
 		getContentPane().add(btnAgregarObjeto);
 		btnAgregarObjeto.setBackground(Color.white);
 		btnAgregarObjeto.setBorder(null);
@@ -82,27 +80,10 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
 			}
 		});
 		btnDeserializarArchivos.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
-		btnDeserializarArchivos.setBounds(533, 228, 228, 51);
+		btnDeserializarArchivos.setBounds(615, 228, 228, 51);
 		getContentPane().add(btnDeserializarArchivos);
 		btnDeserializarArchivos.setBackground(Color.white);
 		btnDeserializarArchivos.setBorder(null);
-		
-		btnCompresionYDescompresion = new JButton("Comprimir y Descomprimir");
-		btnCompresionYDescompresion.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnCompresionYDescompresion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				miControlador.cambiarVentana(0, 3);
-			}
-		});
-		btnCompresionYDescompresion.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
-		btnCompresionYDescompresion.setBounds(125, 360, 228, 51);
-		getContentPane().add(btnCompresionYDescompresion);
-		btnCompresionYDescompresion.setBackground(Color.white);
-		btnCompresionYDescompresion.setBorder(null);
 		
 		btnVisualizarArchivos = new JButton("Visualizar Archivos");
 		btnVisualizarArchivos.addMouseListener(new MouseAdapter() {
@@ -112,31 +93,14 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				miControlador.cambiarVentana(0, 4);
+				miControlador.cambiarVentana(0, 3);
 			}
 		});
 		btnVisualizarArchivos.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
-		btnVisualizarArchivos.setBounds(533, 360, 228, 51);
+		btnVisualizarArchivos.setBounds(329, 355, 228, 51);
 		getContentPane().add(btnVisualizarArchivos);
 		btnVisualizarArchivos.setBackground(Color.white);
 		btnVisualizarArchivos.setBorder(null);
-		
-		btnEliminarArchivos = new JButton("Eliminar Archivos");
-		btnEliminarArchivos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnEliminarArchivos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				miControlador.cambiarVentana(0, 5);
-			}
-		});
-		btnEliminarArchivos.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
-		btnEliminarArchivos.setBounds(355, 479, 180, 51);
-		getContentPane().add(btnEliminarArchivos);
-		btnEliminarArchivos.setBackground(Color.white);
-		btnEliminarArchivos.setBorder(null);
 		
 	}
 }
