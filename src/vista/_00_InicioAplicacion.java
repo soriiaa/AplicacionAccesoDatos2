@@ -17,7 +17,7 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
 
 	private Controlador miControlador;
 	private Modelo miModelo;
-	private JButton btnAgregarArchivo;
+	private JButton btnAgregarObjeto;
 	private JButton btnDeserializarArchivos;
 	private JButton btnCompresionYDescompresion;
 	private JButton btnVisualizarArchivos;
@@ -52,22 +52,22 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
 		lblTitulo.requestFocus(true);
 		getContentPane().add(lblTitulo);
 		
-		btnAgregarArchivo = new JButton("Agregar Archivo");
-		btnAgregarArchivo.addMouseListener(new MouseAdapter() {
+		btnAgregarObjeto = new JButton("Agregar Objeto");
+		btnAgregarObjeto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnAgregarArchivo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btnAgregarObjeto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				miControlador.cambiarVentana(0,1);
 			}
 		});
-		btnAgregarArchivo.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
-		btnAgregarArchivo.setBounds(125, 228, 228, 51);
-		getContentPane().add(btnAgregarArchivo);
-		btnAgregarArchivo.setBackground(Color.white);
-		btnAgregarArchivo.setBorder(null);
+		btnAgregarObjeto.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
+		btnAgregarObjeto.setBounds(125, 228, 228, 51);
+		getContentPane().add(btnAgregarObjeto);
+		btnAgregarObjeto.setBackground(Color.white);
+		btnAgregarObjeto.setBorder(null);
 		
 		
 		btnDeserializarArchivos = new JButton("Deserializar Archivos");

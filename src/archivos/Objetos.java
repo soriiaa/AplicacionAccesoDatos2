@@ -2,20 +2,14 @@ package archivos;
 
 import java.io.Serializable;
 
-public class Archivo implements Serializable {
+public class Objetos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String nombre;
 	private String contenido;
 
-	public Archivo(String nombre, String contenido) {
-		this.nombre = nombre;
+	public Objetos(String contenido) {
 		this.contenido = contenido;
-	}
-
-	public String getNombre() {
-		return nombre;
 	}
 
 	public String getContenido() {
@@ -24,7 +18,7 @@ public class Archivo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Archivo: " + nombre + ", Contenido: " + contenido;
+		return "Contenido: " + contenido;
 	}
 
 }
