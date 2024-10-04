@@ -10,20 +10,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 
 import controlador.Controlador;
 import modelo.Modelo;
 
-public class _01_AgregarArchivo extends JFrame implements Vista {
+public class _01_SerializarArchivos extends JFrame implements Vista {
 
 	private Controlador miControlador;
 	private Modelo miModelo;
@@ -42,7 +39,7 @@ public class _01_AgregarArchivo extends JFrame implements Vista {
 		this.miModelo = miModelo;
 	}
 
-	public _01_AgregarArchivo() {
+	public _01_SerializarArchivos() {
 
 		setResizable(false);
 		setSize(900, 600);
@@ -51,7 +48,7 @@ public class _01_AgregarArchivo extends JFrame implements Vista {
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 18));
 		getContentPane().setBackground(new Color(173, 216, 230));
 		getContentPane().setLayout(null);
-		
+
 		lblExito = new JLabel("Objeto serializado con éxito");
 		lblExito.setForeground(new Color(0, 128, 0));
 		lblExito.setFont(new Font("Tahoma", Font.PLAIN, 21));
@@ -90,11 +87,13 @@ public class _01_AgregarArchivo extends JFrame implements Vista {
 				btnAgregarObjeto.setEnabled(comprobarCampo(txtContenidoObjeto.getText().toString()));
 				lblExito.setVisible(false);
 			}
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 				btnAgregarObjeto.setEnabled(comprobarCampo(txtContenidoObjeto.getText().toString()));
 				lblExito.setVisible(false);
 			}
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				btnAgregarObjeto.setEnabled(comprobarCampo(txtContenidoObjeto.getText().toString()));
@@ -105,7 +104,8 @@ public class _01_AgregarArchivo extends JFrame implements Vista {
 		getContentPane().add(txtContenidoObjeto);
 		txtContenidoObjeto.setColumns(10);
 		txtContenidoObjeto.setBorder(null);
-		txtContenidoObjeto.setBorder(BorderFactory.createCompoundBorder(txtContenidoObjeto.getBorder(), BorderFactory.createEmptyBorder(0, 10, 0, 0)));
+		txtContenidoObjeto.setBorder(BorderFactory.createCompoundBorder(txtContenidoObjeto.getBorder(),
+				BorderFactory.createEmptyBorder(0, 10, 0, 0)));
 
 		lblTituloTextField = new JLabel("Contenido a serializar:");
 		lblTituloTextField.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 20));
@@ -128,26 +128,31 @@ public class _01_AgregarArchivo extends JFrame implements Vista {
 		});
 		lblVolver.setBounds(817, 11, 61, 44);
 		getContentPane().add(lblVolver);
-		
-		
-		
+
 		btnAgregarObjeto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.serializarObjeto(txtContenidoObjeto.getText().toString());
-				txtContenidoObjeto.setText("");
-				lblExito.setVisible(true);
+				boolean serializacionCorrecta = false;
+				int salida = miControlador.crearArchivo();
+				if (salida >= 0) {
+					serializacionCorrecta = miControlador.serializarObjeto(txtContenidoObjeto.getText().toString(), salida);
+				}
+				
+				if (serializacionCorrecta) {
+					txtContenidoObjeto.setText("");
+					lblExito.setVisible(true);
+				}
 			}
 		});
 
 	}
-	
+
 	public boolean comprobarCampo(String texto) {
-		
+
 		if (!texto.equals("")) {
 			return true;
 		} else {
 			return false;
 		}
-		
+
 	}
 }

@@ -1,7 +1,12 @@
 package controlador;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 import javax.swing.JFrame;
 
+import archivos.Objetos;
 import modelo.Modelo;
 import vista.Vista;
 
@@ -27,10 +32,42 @@ public class Controlador {
 		((JFrame) misVistas[hasta]).setVisible(true);
 	}
 
-	public void serializarObjeto(String contenido) {
-		
-		miModelo.serializarArchivo(contenido);
-		
+	public boolean serializarObjeto(String contenido, int numeroArchivo) {
+		return miModelo.serializarObjeto(contenido, numeroArchivo);
 	}
-	
+
+	public List<Objetos> deserializarObjeto() {
+		return miModelo.deserializarObjeto();
+	}
+
+	public int contarArchivos() {
+
+		File carpeta = new File(".\\archivos");
+
+		if (carpeta.isDirectory()) {
+			File[] listaArchivos = carpeta.listFiles();
+			return listaArchivos.length;
+		}
+		return -1;
+	}
+
+	public int crearArchivo() {
+
+		try {
+			int numeroArchivos = contarArchivos();
+			File archivo = new File(".\\archivos\\archivo" + numeroArchivos + ".txt");
+
+			if (archivo.createNewFile()) {
+				return numeroArchivos;
+			} else {
+				return -1;
+			}
+		} catch (IOException e) {
+			System.out.println("Ocurrió un error al crear el archivo.");
+			e.printStackTrace();
+			return -1;
+		}
+
+	}
+
 }
