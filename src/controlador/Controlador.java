@@ -36,17 +36,48 @@ public class Controlador {
 		return miModelo.serializarObjeto(contenido, numeroArchivo);
 	}
 
-	public List<Objetos> deserializarObjeto() {
-		return miModelo.deserializarObjeto();
+	public String deserializarObjeto(String nombreArchivo) {
+		return miModelo.deserializarObjeto(nombreArchivo);
 	}
 
-	public int contarArchivos() {
+	public int contarArchivosTxt() {
 
 		File carpeta = new File(".\\archivos");
+		
+		int contador = 0;
 
 		if (carpeta.isDirectory()) {
 			File[] listaArchivos = carpeta.listFiles();
-			return listaArchivos.length;
+			
+			if (listaArchivos.length != 0) {
+				for (File archivo : listaArchivos) {
+					if (archivo.getName().toString().contains(".txt")) {
+						contador++;
+					}
+				}
+			}
+			return contador;
+		}
+		return -1;
+	}
+	
+	public int contarArchivosZip() {
+
+		File carpeta = new File(".\\archivos");
+		
+		int contador = 0;
+
+		if (carpeta.isDirectory()) {
+			File[] listaArchivos = carpeta.listFiles();
+			
+			if (listaArchivos.length != 0) {
+				for (File archivo : listaArchivos) {
+					if (archivo.getName().toString().contains(".zip")) {
+						contador++;
+					}
+				}
+			}
+			return contador;
 		}
 		return -1;
 	}
@@ -65,7 +96,17 @@ public class Controlador {
 	public int crearArchivo() {
 
 		try {
-			int numeroArchivos = contarArchivos();
+			
+			int numeroArchivos = contarArchivosTxt();
+			
+			File[] archivos = cogerArchivos();
+			
+			for (File archivo : archivos) {
+				if (archivo.getName().equals("archivo" + numeroArchivos + ".txt")) {
+					numeroArchivos++;
+				}
+			}
+			
 			File archivo = new File(".\\archivos\\archivo" + numeroArchivos + ".txt");
 
 			if (archivo.createNewFile()) {
@@ -79,6 +120,24 @@ public class Controlador {
 			return -1;
 		}
 
+	}
+
+	public boolean eliminarArchivo(String nombreArchivo) {
+		
+		return miModelo.eliminarArchivo(nombreArchivo);
+		
+	}
+
+	public boolean comprimir(String nombreArchivo) {
+		
+		return miModelo.comprimir(nombreArchivo, contarArchivosZip());
+		
+	}
+
+	public boolean descomprimirZip(String nombreZip) {
+		
+		return miModelo.descomprimirZip(nombreZip, contarArchivosTxt(), cogerArchivos());
+		
 	}
 
 }

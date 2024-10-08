@@ -39,6 +39,12 @@ public class _02_DeserializarObjetos extends JFrame implements Vista {
 	}
 
 	public _02_DeserializarObjetos() {
+		getContentPane().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				actualizarArchivos();
+			}
+		});
 
 		getContentPane().setLayout(null);
 
@@ -79,13 +85,31 @@ public class _02_DeserializarObjetos extends JFrame implements Vista {
 		getContentPane().add(lblContenidoArchivo);
 
 		model = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		model.addColumn("Nombre Archivos");
 		tableArchivos = new JTable(model);
+		tableArchivos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = tableArchivos.getSelectedRow();
+				if (filaSeleccionada != -1) {
+					String nombreArchivo = (String) tableArchivos.getValueAt(filaSeleccionada, 0);
+					
+					String contenidoArchivo = miControlador.deserializarObjeto(nombreArchivo);
+					
+					if (contenidoArchivo.equals("Error")) {
+						txtContenidoDeserializado.setText("Error, no se puede deserializar un zip");
+					} else {
+						txtContenidoDeserializado.setText(contenidoArchivo);
+					}				
+					
+				}
+			}
+		});
 		tableArchivos.setBounds(214, 125, 458, 193);
 		tableArchivos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getContentPane().add(tableArchivos);
@@ -97,8 +121,9 @@ public class _02_DeserializarObjetos extends JFrame implements Vista {
 				File[] archivos = miControlador.cogerArchivos();
 
 				if (archivos != null) {
+					model.setRowCount(0);
 					for (File archivo : archivos) {
-						model.addRow(new Object[]{archivo.getName()});
+						model.addRow(new Object[] { archivo.getName() });
 					}
 				}
 
@@ -106,4 +131,16 @@ public class _02_DeserializarObjetos extends JFrame implements Vista {
 		});
 
 	}
+	
+	public void actualizarArchivos() {
+		File[] archivos = miControlador.cogerArchivos();
+
+		if (archivos != null) {
+			model.setRowCount(0);
+			for (File archivo : archivos) {
+				model.addRow(new Object[] { archivo.getName() });
+			}
+		}
+	}
+	
 }
